@@ -10,9 +10,9 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-var env = config.build.env
 
 var webpackConfig = merge(baseWebpackConfig, {
+  mode: 'production',
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
@@ -24,8 +24,8 @@ var webpackConfig = merge(baseWebpackConfig, {
     path: config.build.assetsRoot,
     // filename: utils.assetsPath('js/[name].js'),
     // chunkFilename: utils.assetsPath('js/[id].js')
-    filename: utils.assetsPath('/[name].js'),
-    chunkFilename: utils.assetsPath('vendor.js')
+    filename: utils.assetsPath('js/[name].js'),
+    chunkFilename: utils.assetsPath('js/vendor.js')
   },
   optimization: {
     splitChunks: {
@@ -39,14 +39,10 @@ var webpackConfig = merge(baseWebpackConfig, {
     ]
   },
   plugins: [
-    // http://vuejs.github.io/vue-loader/en/workflow/production.html
-    new webpack.DefinePlugin({
-      'process.env': env
-    }),
     // extract css into its own file
     new ExtractTextPlugin({
       // filename: utils.assetsPath('css/[name].[contenthash].css')
-      filename: utils.assetsPath('/[name].css')
+      filename: utils.assetsPath('css/[name].css')
     }),
     // new HtmlWebpackPlugin({
     //   template: __dirname + "/src/[name]/index.tmpl.html"//new 一个这个插件的实例，并传入相关的参数
@@ -72,9 +68,6 @@ var webpackConfig = merge(baseWebpackConfig, {
     //     drop_console: false,
     //   }
     // }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"',
-    }),
     // webpack 3 scope hoisting
     // new webpack.optimize.ModuleConcatenationPlugin()
 

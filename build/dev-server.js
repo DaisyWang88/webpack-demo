@@ -31,8 +31,12 @@ var compiler = webpack(webpackConfig)
 //webpack-dev-middleware调用webpack的api对系统文件watch，当文件发生改变，webpack进行编译打包，并发送到服务器
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   // publicPath: webpackConfig.output.publicPath,
-  publicPath: 'http://localhost:8088', //服务端口路径
-  quiet: true //不向控制台显示任何内容
+  publicPath: 'http://localhost:8089', //服务端口路径
+  quiet: false, //不向控制台显示任何内容
+  // watchOptions: {
+  //   aggregateTimeout: 300,
+  //   poll: true
+  // },
 })
 
 var hotMiddleware = require('webpack-hot-middleware')(compiler, {
@@ -40,12 +44,12 @@ var hotMiddleware = require('webpack-hot-middleware')(compiler, {
   // path: "http://localhost:8080/"
 })
 // force page reload when html-webpack-plugin template changes
-compiler.plugin('compilation', function (compilation) {
-  compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
-    hotMiddleware.publish({ action: 'reload' })
-    cb()
-  })
-})
+// compiler.plugin('compilation', function (compilation) {
+//   compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
+//     hotMiddleware.publish({ action: 'reload' })
+//     cb()
+//   })
+// })
 
 // proxy api requests
 // Object.keys(proxyTable).forEach(function (context) {
@@ -72,6 +76,7 @@ app.use(hotMiddleware)
 
 // serve pure static assets
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
+console.error('staticPath', staticPath);
 app.use(staticPath, express.static('./static'))
 
 var uri = 'http://localhost:' + port

@@ -1,11 +1,11 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
-var port = 8088;
+var port = 8089;
 
 module.exports = {
   build: {
     env: require('./prod.env'),
-    index: path.resolve(__dirname, '../../dist/index.html'),
+    index: path.resolve(__dirname, '../../src/index.html'),
     assetsRoot: path.resolve(__dirname, '../../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
