@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Modal, Button } from 'antd';
-import config from './config.json';
 import { hot } from 'react-hot-loader';
 import Divider from 'antd/lib/divider';
 import './app.less';
