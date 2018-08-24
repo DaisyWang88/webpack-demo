@@ -1,25 +1,4 @@
-// export function simplifyParams(params) {
-//   const param = {};
-//   Object.keys(params).forEach((item) => {
-//     let val = params[item];
-//     if (typeof val === 'string') {
-//       val = val.trim();
-//     }
-//     if (val) {
-//       param[item] = val;
-//     }
-//   });
-//   return param;
-// }
-//  export function isContains(arr, obj) {
-//   let i = arr.length;
-//   while (i--) {
-//     if (arr[i] === obj) {
-//       return true;
-//     }
-//   }
-//   return false;
-// }
+
 // export let age = 12;
 // export function addAge () {
 //   age++;

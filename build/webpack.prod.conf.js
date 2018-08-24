@@ -11,7 +11,18 @@ var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 
+const UglifyJS = require('uglify-es');
+
+const DefaultUglifyJsOptions = UglifyJS.default_options();
+const compress = DefaultUglifyJsOptions.compress;
+for(let compressOption in compress) {
+    compress[compressOption] = false;
+}
+compress.unused = true;
+
+
 var webpackConfig = merge(baseWebpackConfig, {
+  // mode: 'development',
   mode: 'production',
   module: {
     rules: utils.styleLoaders({
@@ -32,11 +43,20 @@ var webpackConfig = merge(baseWebpackConfig, {
       name: true,
       chunks: 'all',
     },
+    minimize: true,
     minimizer: [
       new UglifyJsPlugin({
-        extractComments: false,
+        uglifyOptions: {
+          compress,
+          mangle: false,
+          output: {
+              beautify: true
+          }
+        },
       }),
-    ]
+    ],
+    // usedExports: true,
+    // sideEffects: true,
   },
   plugins: [
     // extract css into its own file

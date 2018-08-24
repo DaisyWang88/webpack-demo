@@ -8,3 +8,9 @@
 支持es7 写法
 
 import 按需加载
+
+tree Shaking
+
+react-hot-loader
+
+CommonJS AMD CMD ES6 模块化测试

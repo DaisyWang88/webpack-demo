@@ -21,6 +21,10 @@ module.exports = {
       "node_modules",
       path.resolve(__dirname, "src")
     ],
+    // alias: {
+    //   'vue$': 'vue/dist/vue.esm.js',
+    //   '#': resolve('widget'),
+    // },
     extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
   },
   module:{

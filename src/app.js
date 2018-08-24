@@ -31,9 +31,11 @@ class App extends Component{
         <div style={{marginBottom: '30px', color: '#e27386'}}>表示hot reload 时状态保存了 </div>
         <Button onClick={this.openModal}>打开弹框</Button>
         <Modal
-          title="es7 新特性使用"
+          title="es7 新特性使用!!"
           visible={visible}
           onOK={this.close}
+          okText="确定"
+          cancelText="取消"
           onCancel={this.close}
           width='700px'
         >
